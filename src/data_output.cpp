@@ -6,7 +6,7 @@ class OutputNode {
 public:
   OutputNode() {
     SubscriberObj =
-        NodeHandler.subscribe("echo", 1, &OutputNode::cCallback, this);
+        NodeHandler.subscribe("output", 1, &OutputNode::cCallback, this);
   }
 
   void cCallback(const std_msgs::String::ConstPtr &received_msg);

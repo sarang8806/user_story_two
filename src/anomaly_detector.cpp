@@ -10,9 +10,9 @@
 class AnomalyDetection {
 public:
   AnomalyDetection() {
-    publisher_obj = node_handle_obj.advertise<std_msgs::String>("echo", 1);
+    publisher_obj = node_handle_obj.advertise<std_msgs::String>("output", 1);
     subcriber_obj = node_handle_obj.subscribe(
-        "chatter", 1, &AnomalyDetection::scallback, this);
+        "signal", 1, &AnomalyDetection::scallback, this);
   }
   void scallback(const std_msgs::String::ConstPtr &receive_msg);
   std::stringstream CheckAnomaly(std::string input_signals);
