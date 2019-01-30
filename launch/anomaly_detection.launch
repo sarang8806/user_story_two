@@ -1,0 +1,6 @@
+<launch>
+	<node name="anomaly_node" pkg="user_story_two" type="anomaly_injector" output="screen" ns="user_story_2"/>
+	<node name="reader_node" pkg="user_story_two" type="data_reader" output="screen" ns="user_story_2"/>
+	<node name="detector_node" pkg="user_story_two" type="anomaly_detector" output="screen" ns="user_story_2"/>
+	<node name="output_node" pkg="user_story_two" type="data_output" output="screen" ns="user_story_2"/>
+</launch>
