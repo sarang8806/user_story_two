@@ -1,28 +1,11 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include <fstream>
-#include <iostream>
-#include <string>
+#include "../include/user_story_two/anomaly_injector.h"
 
-class InjectorNode {
-public:
-  InjectorNode() {
-    ros::NodeHandle node_handler;
-    publisher_obj = node_handler.advertise<std_msgs::String>("inject", 1);
-    file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
-    GenerateAnomalyTimestamp();
-  }
-  void GenerateAnomalyTimestamp();
-
-private:
-  std::ifstream infile;
-  std::string msg_id, vehicle_speed, engine_speed, driver_door, front_passenger,
-      rear_left_door, rear_right_door, timestamp;
-  std_msgs::String publisher_message;
-  int line_count;
-  std::string file_name;
-  ros::Publisher publisher_obj;
-};
+InjectorNode::InjectorNode() {
+  ros::NodeHandle node_handler;
+  publisher_obj = node_handler.advertise<std_msgs::String>("inject", 1);
+  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
+  GenerateAnomalyTimestamp();
+}
 
 void InjectorNode::GenerateAnomalyTimestamp() {
   line_count = 0;

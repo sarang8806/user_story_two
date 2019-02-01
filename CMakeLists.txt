@@ -124,6 +124,11 @@ include_directories(
 #   src/${PROJECT_NAME}/user_story_two.cpp
 # )
 
+add_library(user_story_two src/anomaly_injector.cpp)
+add_library(user_story_two src/anomaly_detector.cpp)
+add_library(user_story_two src/data_reader.cpp)
+add_library(user_story_two src/data_output.cpp)
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -190,6 +195,9 @@ include_directories(
 
 ## Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_user_story_two.cpp)
+catkin_add_gtest(test_user_story_two test/test_user_story_two.cpp)
+target_link_libraries(test_user_story_two user_story_two)
+target_link_libraries(test_user_story_two ${catkin_LIBRARIES})
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

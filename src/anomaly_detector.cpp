@@ -1,27 +1,10 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <vector>
+#include "../include/user_story_two/anomaly_detector.h"
 
-#define COLUMN_COUNT 6
-
-class AnomalyDetection {
-public:
-  AnomalyDetection() {
-    publisher_obj = node_handle_obj.advertise<std_msgs::String>("output", 1);
-    subcriber_obj = node_handle_obj.subscribe(
-        "signal", 1, &AnomalyDetection::scallback, this);
-  }
-  void scallback(const std_msgs::String::ConstPtr &receive_msg);
-  std::stringstream CheckAnomaly(std::string input_signals);
-
-private:
-  ros::Subscriber subcriber_obj;
-  ros::Publisher publisher_obj;
-  ros::NodeHandle node_handle_obj;
-};
+AnomalyDetection::AnomalyDetection() {
+  publisher_obj = node_handle_obj.advertise<std_msgs::String>("output", 1);
+  subcriber_obj = node_handle_obj.subscribe("signal", 1,
+                                            &AnomalyDetection::scallback, this);
+}
 
 void AnomalyDetection::scallback(
     const std_msgs::String::ConstPtr &receive_msg) {

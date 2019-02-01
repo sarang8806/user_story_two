@@ -1,41 +1,14 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include "../include/user_story_two/data_reader.h"
 
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-#include <sstream>
-#include <sstream>
-#include <string>
-#include <vector>
+ReadData::ReadData() {
+  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
+  subscriber_obj =
+      node_handler.subscribe("inject", 1, &ReadData::InjecterCallback, this);
+  FileReadOperation();
+}
 
-#define WINDOW_SIZE 5
-
-std::string anomaly_timestamp;
-
-class ReadData {
-public:
-  ReadData() {
-    file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
-    subscriber_obj =
-        node_handler.subscribe("inject", 1, &ReadData::InjecterCallback, this);
-    FileReadOperation();
-  }
-
-  void InjecterCallback(const std_msgs::String::ConstPtr &anomaly_message);
-  void FileReadOperation();
-
-private:
-  ros::NodeHandle node_handler;
-  ros::Subscriber subscriber_obj;
-  std::ifstream infile;
-  std::string msg_id, vehicle_speed, engine_speed, driver_door,
-      front_passenger_door, rear_left_door, rear_right_door, timestamp;
-  int signal_count;
-  std::string file_name;
-};
-
-void ReadData::InjecterCallback(const std_msgs::String::ConstPtr &anomaly_message) {
+void ReadData::InjecterCallback(
+    const std_msgs::String::ConstPtr &anomaly_message) {
   anomaly_timestamp = anomaly_message->data;
 }
 
