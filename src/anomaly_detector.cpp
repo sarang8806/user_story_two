@@ -2,14 +2,12 @@
 
 AnomalyDetection::AnomalyDetection() {
   publisher_obj = node_handle_obj.advertise<std_msgs::String>("output", 1);
-  subcriber_obj = node_handle_obj.subscribe("signal", 1,
-                                            &AnomalyDetection::scallback, this);
+  subcriber_obj = node_handle_obj.subscribe(
+      "signal", 1, &AnomalyDetection::DetectorCallback, this);
 }
 
-void AnomalyDetection::scallback(
+void AnomalyDetection::DetectorCallback(
     const std_msgs::String::ConstPtr &receive_msg) {
-
-  // Call CheckAnomaly()
   std_msgs::String send_to_output_node;
   std::stringstream anomaly_timestamp = CheckAnomaly(receive_msg->data);
   if (!anomaly_timestamp.str().empty()) {
@@ -20,13 +18,10 @@ void AnomalyDetection::scallback(
 }
 
 std::stringstream AnomalyDetection::CheckAnomaly(std::string input_signals) {
-  std::vector<std::string>
-      signal_sample; // signal parameter eg. vehicle_speed, doors etc.
-  std::stringstream signal(input_signals); // CAN signals from input node
-  std::string
-      signal_sample_value; // eg. vehicle_speed = 50.32, driver_door = 0;
-  std::stringstream
-      anomaly_signal_timestamp; // Anomaly affected signal timestamp
+  std::vector<std::string> signal_sample;
+  std::stringstream signal(input_signals);
+  std::string signal_sample_value;
+  std::stringstream anomaly_signal_timestamp;
 
   for (int signal_count = 0; signal_count < 5; ++signal_count) {
     for (int i = 0; i < 6; ++i) {
@@ -42,9 +37,7 @@ std::stringstream AnomalyDetection::CheckAnomaly(std::string input_signals) {
     }
     signal_sample.clear();
   }
-  signal.str("");
-  return anomaly_signal_timestamp; // Returning anomaly affected signal
-                                   // timestamp
+  return anomaly_signal_timestamp;
 }
 
 int main(int argc, char **argv) {

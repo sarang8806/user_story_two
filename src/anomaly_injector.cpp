@@ -3,7 +3,7 @@
 InjectorNode::InjectorNode() {
   ros::NodeHandle node_handler;
   publisher_obj = node_handler.advertise<std_msgs::String>("inject", 1);
-  file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
+  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
   GenerateAnomalyTimestamp();
 }
 
@@ -33,7 +33,6 @@ void InjectorNode::GenerateAnomalyTimestamp() {
 }
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "anomaly_injector");
   InjectorNode injector_node_obj;
 

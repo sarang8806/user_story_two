@@ -8,7 +8,7 @@
 class OutputNode {
 public:
   OutputNode();
-  void cCallback(const std_msgs::String::ConstPtr &received_msg);
+  void OutputCallback(const std_msgs::String::ConstPtr &received_msg);
 
 private:
   ros::NodeHandle NodeHandler;

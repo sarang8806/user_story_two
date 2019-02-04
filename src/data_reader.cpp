@@ -1,7 +1,7 @@
 #include "../include/user_story_two/data_reader.h"
 
 ReadData::ReadData() {
-  file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
+  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
   subscriber_obj =
       node_handler.subscribe("inject", 1, &ReadData::InjecterCallback, this);
   FileReadOperation();
@@ -34,9 +34,6 @@ void ReadData::FileReadOperation() {
 
       if (timestamp == anomaly_timestamp) {
         driver_door = "1";
-        front_passenger_door = "1";
-        rear_left_door = "1";
-        rear_right_door = "1";
         std::cout << "Anomaly injected in timestamp: " << timestamp
                   << std::endl;
       }
@@ -68,7 +65,6 @@ void ReadData::FileReadOperation() {
 }
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "data_reader");
 
   ReadData read_data_obj;

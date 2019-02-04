@@ -2,10 +2,11 @@
 
 OutputNode::OutputNode() {
   SubscriberObj =
-      NodeHandler.subscribe("output", 1, &OutputNode::cCallback, this);
+      NodeHandler.subscribe("output", 1, &OutputNode::OutputCallback, this);
 }
 
-void OutputNode::cCallback(const std_msgs::String::ConstPtr &received_msg) {
+void OutputNode::OutputCallback(
+    const std_msgs::String::ConstPtr &received_msg) {
   std::cout << "Timestamp/s with anomaly " << received_msg->data << std::endl;
   std::cout
       << "==================================================================="
@@ -13,7 +14,6 @@ void OutputNode::cCallback(const std_msgs::String::ConstPtr &received_msg) {
 }
 
 int main(int argc, char **argv) {
-
   ros::init(argc, argv, "data_output");
   OutputNode OutputNodeObj;
 

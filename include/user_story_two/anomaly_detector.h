@@ -13,7 +13,7 @@
 class AnomalyDetection {
 public:
   AnomalyDetection();
-  void scallback(const std_msgs::String::ConstPtr &receive_msg);
+  void DetectorCallback(const std_msgs::String::ConstPtr &receive_msg);
   std::stringstream CheckAnomaly(std::string input_signals);
 
 private:
