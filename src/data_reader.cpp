@@ -1,7 +1,7 @@
 #include "../include/user_story_two/data_reader.h"
 
 ReadData::ReadData() {
-  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
+  file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
   subscriber_obj =
       node_handler.subscribe("inject", 1, &ReadData::InjecterCallback, this);
   FileReadOperation();
@@ -40,7 +40,6 @@ void ReadData::FileReadOperation() {
 
       if (infile.eof()) {
         signal_data.data = data_stream.str();
-        data_stream.str("");
 
         publisher_obj.publish(signal_data);
         ros::shutdown();
@@ -50,7 +49,7 @@ void ReadData::FileReadOperation() {
                   << rear_right_door << " " << timestamp << " ";
       ++signal_count;
 
-      if (signal_count == WINDOW_SIZE) {
+      if (signal_count == WINDOW_SIZE) { 
         signal_count = 0;
         signal_data.data = data_stream.str();
         data_stream.str("");
