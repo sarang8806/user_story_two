@@ -124,10 +124,10 @@ include_directories(
 #   src/${PROJECT_NAME}/user_story_two.cpp
 # )
 
-add_library(user_story_two src/anomaly_injector.cpp)
+#add_library(user_story_two src/anomaly_injector.cpp)
 add_library(user_story_two src/anomaly_detector.cpp)
-add_library(user_story_two src/data_reader.cpp)
-add_library(user_story_two src/data_output.cpp)
+#add_library(user_story_two src/data_reader.cpp)
+#add_library(user_story_two src/data_output.cpp)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

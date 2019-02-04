@@ -1,7 +1,7 @@
 #include "../include/user_story_two/data_reader.h"
 
 ReadData::ReadData() {
-  file_name = "/home/sarangp1/catkin_ws/src/user_story_two/src/can_data.csv";
+  file_name = "/home/indrajith/wscatkin/src/user_story_two/src/can_data.csv";
   subscriber_obj =
       node_handler.subscribe("inject", 1, &ReadData::InjecterCallback, this);
   FileReadOperation();

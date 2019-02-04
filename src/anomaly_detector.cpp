@@ -11,8 +11,7 @@ void AnomalyDetection::scallback(
 
   // Call CheckAnomaly()
   std_msgs::String send_to_output_node;
-  std::string data_from_input_node = receive_msg->data;
-  std::stringstream anomaly_timestamp = CheckAnomaly(data_from_input_node);
+  std::stringstream anomaly_timestamp = CheckAnomaly(receive_msg->data);
   if (!anomaly_timestamp.str().empty()) {
     std::cout << "Anomaly Detected! Sending Info..." << std::endl;
     send_to_output_node.data = anomaly_timestamp.str();
